@@ -6,7 +6,10 @@
 
 body {
   font-family: "montserrat", sans-serif;
-  background-image: url("wp9372041-game-scenery-wallpapers.jpg");
+}
+
+.bg_img {
+  background-image: url("images/snow.jpeg"); 
   background-size: cover;
   background-position: top center;
 }

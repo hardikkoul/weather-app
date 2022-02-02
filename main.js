@@ -13,12 +13,20 @@ function setQuery(evt){
     }
 }
 
+// function setImage(w){
+//     if(weather_el=='Clouds'){
+//         document.getElementsByClassName('bg_img').style.color="blue";
+//     }
+// }
+
 function getResults (query) {
     fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
       .then(weather => {
         return weather.json();
       }).then(displayResults);
   }
+
+
 
 function displayResults(weather) {
     console.log('Weather is:', weather);
@@ -35,9 +43,12 @@ function displayResults(weather) {
     let weather_el = document.querySelector('.current .weather');
     weather_el.innerText = weather.weather[0].main;
 
+    // setImage(weather_el);
+
     let hilow = document.querySelector('.hi-low');
     hilow.innerText = `Max ${Math.round(weather.main.temp_min)}°C / Min ${Math.round(weather.main.temp_max)}°C`;
 }
+
 
 function dateBuilder(d){
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
