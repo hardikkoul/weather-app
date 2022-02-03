@@ -6,18 +6,12 @@ const api={
 const searchbox = document.querySelector('.search-box');
 searchbox.addEventListener('keypress',setQuery);
 
+
 function setQuery(evt){
     if(evt.keyCode == 13) {
         getResults(searchbox.value);
-        console.log(searchbox.value);
     }
 }
-
-// function setImage(w){
-//     if(weather_el=='Clouds'){
-//         document.getElementsByClassName('bg_img').style.color="blue";
-//     }
-// }
 
 function getResults (query) {
     fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
@@ -27,6 +21,7 @@ function getResults (query) {
   }
 
 
+var weather_text;
 
 function displayResults(weather) {
     console.log('Weather is:', weather);
@@ -42,13 +37,33 @@ function displayResults(weather) {
 
     let weather_el = document.querySelector('.current .weather');
     weather_el.innerText = weather.weather[0].main;
+    weather_text = weather_el.innerText;
+    console.log("weather text =",weather_text);
 
-    // setImage(weather_el);
+    var bgimg = document.getElementById("bg");
+    if(weather_text == 'Fog'){
+        bgimg.style.backgroundImage="url('images/fog.jpg')";
+    }
+
+    else if (weather_text=='Clouds'){
+        bgimg.style.backgroundImage="url('images/clouds.jpg')";
+    }
+
+    else if (weather_text=='Rain'){
+        bgimg.style.backgroundImage="url('images/rain.jpg')";
+    }
+
+    // timeCalculator();
 
     let hilow = document.querySelector('.hi-low');
     hilow.innerText = `Max ${Math.round(weather.main.temp_min)}°C / Min ${Math.round(weather.main.temp_max)}°C`;
 }
 
+// function timeCalculator(){
+// var today = new Date();
+// var time = today.getHours();
+// console.log("time::",time);
+// }
 
 function dateBuilder(d){
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

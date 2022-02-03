@@ -9,7 +9,7 @@ body {
 }
 
 .bg_img {
-  background-image: url("images/snow.jpeg"); 
+  /* background-image: url("images/snow.jpeg");  */
   background-size: cover;
   background-position: top center;
 }
